@@ -1,0 +1,98 @@
+/*
+ * Comafro design system — base styles from the design reference (site/index.html).
+ * Components use inline styles that read these tokens; keep values in sync with the handoff README.
+ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+:root {
+  --bg: #F4EFE4; --bg-rgb: 244,239,228; --bg2: #EDE6D8; --paper: #FBF8F1; --paper2: #F7F2E6; --line-warm: #E7DFCB;
+  --ink: #12271C; --ink-rgb: 18,39,28; --ink-soft: #2A3B2F; --ink-hover: #1E4030; --ink-deep: #0E2018; --muted: #4A5A4D;
+  --accent: #8E3F1C; --ochre: #8A5A12; --ochre-deep: #6B5324; --ochre-deepest: #5F5210; --ochre-light: #D9A441;
+  --sage: #A9BAA9; --sage-light: #C6D3C6; --sage-pale: #E3EAE3; --sage-mid: #B6C4B6; --sage-soft: #D6DDD3;
+}
+:root[data-theme="mono"] {
+  --bg: #FFFFFF; --bg-rgb: 255,255,255; --bg2: #F4F2ED; --paper: #FCFBF8; --paper2: #F8F6F1; --line-warm: #E5E2DA;
+  --ink: #0B0B0A; --ink-rgb: 12,12,11; --ink-soft: #242320; --ink-hover: #38352C; --ink-deep: #000000; --muted: #6B675E;
+  --accent: #9A6A2A; --ochre: #8F6B14; --ochre-deep: #6E5210; --ochre-deepest: #57410C; --ochre-light: #D8AE3C;
+  --sage: #C9C4B7; --sage-light: #D6D2C7; --sage-pale: #EFEDE6; --sage-mid: #CFCABD; --sage-soft: #DFDBD1;
+}
+body { margin: 0; background-color: var(--bg); background-image: repeating-linear-gradient(0deg, rgba(var(--ink-rgb),0.014) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(var(--ink-rgb),0.014) 0 1px, transparent 1px 3px); color: var(--ink); font-family: var(--font-archivo), Helvetica, Arial, sans-serif; font-synthesis: none; text-wrap: pretty; }
+a { color: var(--ink); text-decoration: none; }
+a:hover { color: var(--accent); }
+h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
+p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+figure svg { max-width: 100%; }
+@keyframes comafro-dash { to { stroke-dashoffset: -260; } }
+[data-lbl-short] { display: none; }
+@keyframes comafro-rule { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes comafro-caret { 0%, 45% { opacity: 1; } 55%, 100% { opacity: 0; } }
+@keyframes comafro-pulse { 0%, 100% { opacity: .25; transform: scale(1); } 50% { opacity: .9; transform: scale(1.5); } }
+@media (max-width: 640px) and (orientation: portrait) {
+  [data-btnrow] { justify-content: space-between; align-items: stretch; width: 90%; margin-left: auto; margin-right: auto; }
+  [data-btnrow] > a { flex: 1 1 0; min-width: 0; text-align: center; }
+  [data-btn-solo] { display: block; width: 90%; flex: 0 0 auto; text-align: center; margin-left: auto; margin-right: auto; }
+  [data-nav-cta] { display: block; width: 90%; text-align: center; margin: 4px auto 2px; }
+  [data-logo] { width: 100%; justify-content: center; margin-right: 0 !important; }
+  [data-stats] { grid-template-columns: 1fr 1fr !important; }
+  [data-stats] > div { text-align: center; }
+  [data-stats] > div > p:last-child { max-width: none !important; }
+  [data-footer] { text-align: center; }
+  [data-footer] [data-footcol] { align-items: center; }
+  [data-footer] p, [data-footer] span { max-width: none !important; }
+  [data-footbar] { justify-content: center !important; text-align: center; }
+  [data-langrow] { margin: 0 auto; }
+  [data-logo] { width: auto !important; }
+  [data-logorow] { display: flex; width: auto; justify-content: flex-start; margin-bottom: 0; }
+  [data-burger] { display: flex !important; }
+  [data-desknav] { display: none !important; }
+  [data-hdr-cta] { display: none !important; }
+  [data-buyernav] { display: none !important; }
+  [data-drawer] { display: flex !important; }
+  [data-steprow] { grid-template-columns: 44px 1fr !important; row-gap: 6px; }
+  [data-steprow] > :last-child { grid-column: 2 !important; }
+  [data-buyerbar] { display: none !important; }
+  [data-lbl-full] { display: none !important; }
+  [data-lbl-short] { display: inline !important; }
+  [data-footpair] { display: grid !important; grid-template-rows: auto auto; grid-auto-flow: column; column-gap: 14px; align-items: start; }
+  [data-footpair] > p { margin-top: 0 !important; }
+  [style*="clamp(22px,5vw,80px)"], [style*="clamp(22px, 5vw, 80px)"] { padding-left: 13px !important; padding-right: 13px !important; }
+  main, main h1, main h2, main h3, main h4, main p, main span, main label, main figcaption { text-align: center; }
+  main h1, main h2, main h3, main h4, main p { max-width: none !important; margin-left: auto !important; margin-right: auto !important; }
+  main [data-rule] { margin-left: auto !important; margin-right: auto !important; }
+  main [data-rule] > span { transform-origin: center !important; width: calc(100% + 2.5em) !important; margin-left: -1.25em; }
+  main ul, main ol { padding-left: 0 !important; list-style: none; width: fit-content; max-width: 100%; margin-left: auto !important; margin-right: auto !important; }
+  main li, main li * { text-align: left !important; }
+  main li { justify-content: flex-start !important; }
+  main [data-boxed], main [data-boxed] *,
+  main [data-markerrow], main [data-markerrow] *,
+  main [data-steprow], main [data-steprow] *,
+  main [style*="grid-template-columns: 96px 1fr"] *,
+  main [style*="grid-template-columns: 14px 1fr"] *,
+  main [style*="grid-template-columns:96px 1fr"] *,
+  main [style*="grid-template-columns:14px 1fr"] * { text-align: left !important; }
+  main [data-boxed] h1, main [data-boxed] h2, main [data-boxed] h3, main [data-boxed] h4, main [data-boxed] p { margin-left: 0 !important; margin-right: 0 !important; }
+  main [data-boxed] ul, main [data-boxed] ol { width: fit-content; max-width: 100%; margin-left: auto !important; margin-right: auto !important; }
+  main button, main [type="submit"], main a[data-btn], main [data-btnrow] > a, main [data-btn-solo] { text-align: center !important; justify-content: center !important; }
+  [data-footlockup] { justify-content: center !important; }
+  footer [data-footlockup] ~ p { text-align: center; }
+  main [data-steprow], main [style*="grid-template-columns: 96px 1fr"], main [style*="grid-template-columns: 14px 1fr"], main [style*="grid-template-columns:96px 1fr"], main [style*="grid-template-columns:14px 1fr"] { justify-items: start !important; }
+  main [data-caplead], main [data-caplead] *, main [data-linkrow], main [data-linkrow] * { text-align: center !important; }
+  main [data-caplead], main [data-linkrow] { justify-content: center !important; }
+  main [data-markerrow] [data-caplead], main [data-markerrow][data-caplead] { text-align: left !important; }
+  main [style*="text-align:right"], main [style*="text-align: right"] { text-align: left !important; }
+  main figcaption:not([data-caplead]) { flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; row-gap: 8px; }
+  main figcaption:not([data-caplead]) > * { text-align: left !important; margin-left: 0 !important; margin-right: 0 !important; }
+}
+
+/* Hover states (inline styles cannot express :hover, so they win with !important). */
+.hover-btn:hover { background: var(--ink-hover) !important; color: var(--bg) !important; }
+.hover-btn-outline:hover { background: var(--line-warm) !important; color: var(--ink) !important; }
+.hover-accent:hover { color: var(--accent) !important; }
+.hover-accent-border:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+.hover-bg:hover { color: var(--bg) !important; }
+.hover-white:hover { color: #FFFFFF !important; }
+.hover-ochre-border:hover { border-color: var(--ochre) !important; }
+
+/* Scroll reveal: hide targets until the reveal script has picked them up (see components/site/enhancer.tsx). */
+html.rv :is(h1, h2, h3, h4, [data-reveal]):not([data-rv]) { opacity: 0; }

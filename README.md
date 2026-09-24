@@ -1,59 +1,68 @@
 # Comafro
 
+Export website for Comafro General Trading Ltd: nine pages in English and Arabic (RTL).
+
 ## Tech stack
 
-- [Next.js](https://nextjs.org) (App Router, TypeScript, `src/` directory)
-- [Tailwind CSS v4](https://tailwindcss.com)
-- [shadcn/ui](https://ui.shadcn.com) (`components.json`, components in `src/components/ui`)
-- React Context API for app state (`src/context`)
-- [Clerk](https://clerk.com) for authentication
+- [Next.js 16](https://nextjs.org) (App Router, TypeScript, `src/` directory)
+- [Tailwind CSS v4](https://tailwindcss.com) (theme + utilities; preflight is left out so the design renders against browser defaults)
+- [shadcn/ui](https://ui.shadcn.com) (`components.json`, components in `src/components/ui`, colours mapped to the Comafro tokens)
+- React Context API for app state (`src/context/app-context.tsx`: locale, theme, mobile menu)
+- [Clerk](https://clerk.com) for authentication (`/sign-in`, `/sign-up`, protected `/dashboard`)
 
 ## Getting started
 
-1. Install dependencies:
+```bash
+npm install
+cp .env.example .env.local   # add your Clerk keys
+npm run dev
+```
 
-   ```bash
-   npm install
-   ```
+Open http://localhost:3000. It redirects to `/en`, or to `/ar` when the browser prefers Arabic.
 
-2. Create a Clerk application at https://dashboard.clerk.com, then copy the env template and fill in your keys:
+## Routes
 
-   ```bash
-   cp .env.example .env.local
-   ```
+| Page | English | Arabic |
+|---|---|---|
+| Home | `/en` | `/ar` |
+| About | `/en/about` | `/ar/about` |
+| What we do | `/en/services` | `/ar/services` |
+| Products | `/en/products` | `/ar/products` |
+| Contact | `/en/contact` | `/ar/contact` |
+| Quality & compliance | `/en/quality` | `/ar/quality` |
+| Seasonality | `/en/seasonality` | `/ar/seasonality` |
+| Sourcing network | `/en/sourcing` | `/ar/sourcing` |
+| Buyer resources | `/en/resources` | `/ar/resources` |
 
-3. Run the dev server:
-
-   ```bash
-   npm run dev
-   ```
-
-   Open http://localhost:3000.
+All 18 pages are statically generated. Clerk runs only on the auth routes, `/dashboard` and API routes (`src/proxy.ts`).
 
 ## Project structure
 
 ```
+design/                     # Design handoff (source of truth for visuals); serve with `npx serve design`
 src/
   app/
-    layout.tsx               # ClerkProvider + AppProvider + header
-    page.tsx                 # Landing page
-    dashboard/page.tsx       # Protected route
-    sign-in/[[...sign-in]]/  # Clerk sign-in
-    sign-up/[[...sign-up]]/  # Clerk sign-up
+    [lang]/                 # Site root layout (html lang, fonts, header/footer) and one folder per page
+    (auth)/                 # Clerk sign-in / sign-up / dashboard with their own root layout
+    global-not-found.tsx    # 404 for unmatched URLs
+    globals.css             # Tailwind + shadcn token mapping
+    site.css                # Design tokens (cream + mono themes), base rules, mobile-portrait rules, hover states
+    fonts.ts                # Archivo, Newsreader, JetBrains Mono, Noto Kufi Arabic via next/font
   components/
-    ui/                      # shadcn/ui components
-    site-header.tsx
-    theme-toggle.tsx
-  context/
-    app-context.tsx          # Global app state (theme) via Context API
-  lib/utils.ts               # cn() helper
-  proxy.ts                   # Clerk middleware (Next.js 16 "proxy" convention)
+    pages/en, pages/ar      # Page content, converted 1:1 from design/index.html
+    site/                   # Header, footer, theme toggle, hero typewriter, custom select, enhancer
+    ui/                     # shadcn/ui
+  context/app-context.tsx
+  lib/i18n.ts               # Locales, page slugs, titles
+  proxy.ts
 ```
 
-Protected routes are listed in `src/proxy.ts` (`createRouteMatcher`).
+Page components use the design's inline styles verbatim, so values can be checked against `design/index.html`.
+`components/site/enhancer.tsx` carries the reference's runtime behaviour: scroll reveal, eyebrow rules and the
+mobile-portrait centering tags that `site.css` keys off.
 
-## Adding shadcn components
+## Before launch
 
-```bash
-npx shadcn@latest add dialog
-```
+- The contact form shows a confirmation but does not send yet. Wire `submitForm` in `src/components/pages/*/contact.tsx` to an API route or form service.
+- Replace the placeholder phone number (+256 700 000 000) and confirm the email addresses.
+- Confirm the operating-record dates on Home and About.

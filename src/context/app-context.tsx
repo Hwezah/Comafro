@@ -1,24 +1,34 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   createContext,
   useCallback,
   useContext,
   useEffect,
   useMemo,
+  useState,
   useSyncExternalStore,
 } from "react";
 
-type Theme = "light" | "dark";
+import type { Locale } from "@/lib/i18n";
+
+/** "light" is the cream palette, "mono" the black, white & tan one. */
+export type Theme = "light" | "mono";
+
+export const THEME_KEY = "comafro-theme";
 
 type AppContextValue = {
+  lang: Locale;
   theme: Theme;
   toggleTheme: () => void;
+  menuOpen: boolean;
+  toggleMenu: () => void;
+  closeMenu: () => void;
 };
 
 const AppContext = createContext<AppContextValue | null>(null);
 
-const THEME_KEY = "theme";
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void) {
@@ -27,34 +37,55 @@ function subscribe(listener: () => void) {
 }
 
 function getThemeSnapshot(): Theme {
-  const stored = localStorage.getItem(THEME_KEY);
-  if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  try {
+    return localStorage.getItem(THEME_KEY) === "mono" ? "mono" : "light";
+  } catch {
+    return "light";
+  }
 }
 
 function getServerThemeSnapshot(): Theme {
   return "light";
 }
 
-export function AppProvider({ children }: { children: React.ReactNode }) {
+export function AppProvider({
+  lang,
+  children,
+}: {
+  lang: Locale;
+  children: React.ReactNode;
+}) {
   const theme = useSyncExternalStore(
     subscribe,
     getThemeSnapshot,
     getServerThemeSnapshot
   );
+  const [menu, setMenu] = useState({ open: false, path: "" });
+  const pathname = usePathname();
+  // The drawer closes whenever the route changes.
+  const menuOpen = menu.open && menu.path === pathname;
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
-    localStorage.setItem(THEME_KEY, theme === "dark" ? "light" : "dark");
+    try {
+      localStorage.setItem(THEME_KEY, theme === "mono" ? "light" : "mono");
+    } catch {}
     listeners.forEach((listener) => listener());
   }, [theme]);
 
-  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
+  const toggleMenu = useCallback(
+    () => setMenu({ open: !menuOpen, path: pathname }),
+    [menuOpen, pathname]
+  );
+  const closeMenu = useCallback(() => setMenu({ open: false, path: "" }), []);
+
+  const value = useMemo(
+    () => ({ lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu }),
+    [lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu]
+  );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
