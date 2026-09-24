@@ -69,7 +69,8 @@ src/
 
 Page components use the design's inline styles verbatim, so values can be checked against `design/index.html`.
 `components/site/enhancer.tsx` carries the reference's runtime behaviour: scroll reveal, eyebrow rules and the
-mobile-portrait centering tags that `site.css` keys off.
+mobile-portrait centering tags that `site.css` keys off. It also makes the shorter of two side-by-side columns
+sticky (below the header) while the taller one scrolls; hero rows and columns inside scrollable tables are left alone.
 
 ## Before launch
 

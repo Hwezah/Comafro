@@ -165,6 +165,75 @@ function tagLayout(main: HTMLElement) {
   });
 }
 
+/** A column must be at least this much shorter than its neighbour before it sticks. */
+const STICKY_MIN_DIFF = 100;
+const STICKY_GAP = 24;
+
+function insideScroller(el: HTMLElement, main: HTMLElement) {
+  for (let p = el.parentElement; p && p !== main; p = p.parentElement) {
+    const cs = getComputedStyle(p);
+    if (cs.overflowX !== "visible" || cs.overflowY !== "visible") return true;
+  }
+  return false;
+}
+
+/**
+ * Where two or more columns sit side by side and one is clearly shorter, the shorter
+ * column sticks below the header while the taller one scrolls past it.
+ */
+function stickyPass(main: HTMLElement) {
+  main.querySelectorAll<HTMLElement>("[data-sticky]").forEach((el) => {
+    el.style.position = el.dataset.stickyPos ?? "";
+    el.style.top = el.dataset.stickyTop ?? "";
+    el.style.alignSelf = el.dataset.stickyAlign ?? "";
+    delete el.dataset.sticky;
+    delete el.dataset.stickyPos;
+    delete el.dataset.stickyTop;
+    delete el.dataset.stickyAlign;
+  });
+
+  const header = document.querySelector("header");
+  const top = (header?.getBoundingClientRect().height ?? 0) + STICKY_GAP;
+  const room = window.innerHeight - top - STICKY_GAP;
+
+  main.querySelectorAll<HTMLElement>("div, section, form").forEach((row) => {
+    const cs = getComputedStyle(row);
+    const isRow = cs.display === "grid" || (cs.display === "flex" && !/column/.test(cs.flexDirection));
+    if (!isRow) return;
+    const cols = Array.from(row.children).filter(
+      (c): c is HTMLElement => c instanceof HTMLElement && /^(static|relative)$/.test(getComputedStyle(c).position)
+    );
+    if (cols.length < 2) return;
+
+    // Measure each column at its natural height instead of the stretched row height.
+    const saved = cols.map((c) => c.style.alignSelf);
+    cols.forEach((c) => (c.style.alignSelf = "start"));
+    const rects = cols.map((c) => c.getBoundingClientRect());
+    cols.forEach((c, i) => (c.style.alignSelf = saved[i]));
+
+    // Only columns laid out on one line, side by side.
+    const sameLine = rects.every((r) => Math.abs(r.top - rects[0].top) < 2);
+    const sideBySide = new Set(rects.map((r) => Math.round(r.left))).size === rects.length;
+    if (!sameLine || !sideBySide || rects.some((r) => r.width < 160)) return;
+    // Hero rows keep their designed alignment: they are already on screen when the page opens.
+    if (rects[0].top + window.scrollY < window.innerHeight * 0.6) return;
+
+    const tallest = Math.max(...rects.map((r) => r.height));
+    cols.forEach((col, i) => {
+      const h = rects[i].height;
+      if (tallest - h < STICKY_MIN_DIFF || h > room || insideScroller(col, main)) return;
+      if (col.parentElement?.closest("[data-sticky]")) return;
+      col.dataset.sticky = "1";
+      col.dataset.stickyPos = col.style.position;
+      col.dataset.stickyTop = col.style.top;
+      col.dataset.stickyAlign = col.style.alignSelf;
+      col.style.position = "sticky";
+      col.style.top = `${top}px`;
+      col.style.alignSelf = "start";
+    });
+  });
+}
+
 export function Enhancer() {
   useEffect(() => {
     const main = document.querySelector("main");
@@ -214,6 +283,7 @@ export function Enhancer() {
       }
       symmetryPass(main);
       tagLayout(main);
+      stickyPass(main);
     };
 
     let frame = 0;
