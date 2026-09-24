@@ -8,7 +8,7 @@
 @import "tw-animate-css";
 @import "./site.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* shadcn/ui colour slots mapped straight onto the Comafro tokens in site.css (square corners). */
 @theme inline {

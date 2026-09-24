@@ -316,7 +316,7 @@ export function ArCalendarPage() {
           </div>
         </div>
       </section>
-      <section style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div
           style={{
             maxWidth: "1440px",

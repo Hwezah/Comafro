@@ -785,7 +785,7 @@ export function EnServicesPage() {
                   No cross-traffic between sides · knives, chillers and cartons dedicated to halal product
                 </p>
               </figure>
-              <div style={{ background: "var(--ink)", color: "var(--bg)", padding: "22px", marginTop: "18px" }}>
+              <div data-band="" style={{ background: "var(--ink)", color: "var(--bg)", padding: "22px", marginTop: "18px" }}>
                 <p style={{ fontFamily: "var(--font-jetbrains),monospace", fontSize: "11.5px", color: "var(--sage)" }}>
                   For Middle East buyers
                 </p>
@@ -798,7 +798,7 @@ export function EnServicesPage() {
           </div>
         </div>
       </section>
-      <section id="logistics" style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section data-band="" id="logistics" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,5vw,68px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontFamily: "var(--font-jetbrains),monospace", fontSize: "12px", color: "var(--ochre)" }}>
             04 · Logistics

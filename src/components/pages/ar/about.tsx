@@ -371,7 +371,7 @@ export function ArAboutPage() {
           </figure>
         </div>
       </section>
-      <section style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(23px,2.9vw,34px)", lineHeight: "1.45", maxWidth: "30ch" }}>
             مؤشرات مصداقية يمكن للمشتري التحقق منها

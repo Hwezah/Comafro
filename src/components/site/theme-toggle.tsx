@@ -2,17 +2,17 @@
 
 import { useApp } from "@/context/app-context";
 
-/** Fixed pill that switches between the cream and the black, white & tan palettes. */
+/** Fixed pill that switches between the cream and the dark grey palettes. */
 export function ThemeToggle() {
   const { theme, toggleTheme } = useApp();
-  const mono = theme === "mono";
+  const dark = theme === "dark";
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      title={mono ? "Switch to cream theme" : "Switch to black, white & tan"}
+      title={dark ? "Switch to cream theme" : "Switch to dark theme"}
       className="hover-ochre-border"
       style={{
         position: "fixed",
@@ -46,7 +46,7 @@ export function ThemeToggle() {
           style={{
             position: "absolute",
             top: "2px",
-            left: mono ? "24px" : "2px",
+            left: dark ? "24px" : "2px",
             width: "16px",
             height: "16px",
             borderRadius: "999px",
@@ -64,7 +64,7 @@ export function ThemeToggle() {
           paddingRight: "2px",
         }}
       >
-        {mono ? "TAN" : "CREAM"}
+        {dark ? "DARK" : "CREAM"}
       </span>
     </button>
   );

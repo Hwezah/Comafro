@@ -13,8 +13,8 @@ import {
 
 import type { Locale } from "@/lib/i18n";
 
-/** "light" is the cream palette, "mono" the black, white & tan one. */
-export type Theme = "light" | "mono";
+/** "light" is the cream palette, "dark" the dark grey one. */
+export type Theme = "light" | "dark";
 
 export const THEME_KEY = "comafro-theme";
 
@@ -38,7 +38,7 @@ function subscribe(listener: () => void) {
 
 function getThemeSnapshot(): Theme {
   try {
-    return localStorage.getItem(THEME_KEY) === "mono" ? "mono" : "light";
+    return localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light";
   } catch {
     return "light";
   }
@@ -71,7 +71,7 @@ export function AppProvider({
 
   const toggleTheme = useCallback(() => {
     try {
-      localStorage.setItem(THEME_KEY, theme === "mono" ? "light" : "mono");
+      localStorage.setItem(THEME_KEY, theme === "dark" ? "light" : "dark");
     } catch {}
     listeners.forEach((listener) => listener());
   }, [theme]);

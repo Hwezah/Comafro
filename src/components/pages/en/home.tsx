@@ -309,7 +309,7 @@ export function EnHomePage() {
           </div>
         </div>
       </section>
-      <section style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(40px,5vw,72px) clamp(22px,5vw,80px)" }}>
           <div
             style={{

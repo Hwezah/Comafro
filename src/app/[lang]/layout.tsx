@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
 }
 
 // Applies the saved theme and enables scroll reveal before first paint.
-const bootScript = `(function(){try{var t=localStorage.getItem(${JSON.stringify(THEME_KEY)});if(t==="mono")document.documentElement.setAttribute("data-theme","mono")}catch(e){}if("IntersectionObserver"in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("rv")})()`;
+const bootScript = `(function(){try{var t=localStorage.getItem(${JSON.stringify(THEME_KEY)});if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}if("IntersectionObserver"in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("rv")})()`;
 
 export default async function SiteLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;

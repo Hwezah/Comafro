@@ -112,6 +112,7 @@ export function Footer({ lang }: { lang: Locale }) {
   return (
     <footer
       data-footer=""
+      data-band=""
       dir={ar ? "rtl" : undefined}
       style={{
         background: "var(--ink)",

@@ -151,7 +151,7 @@ export function EnQualityPage() {
               </span>
             </div>
           </div>
-          <div
+          <div data-band=""
             style={{
               background: "var(--ink)",
               color: "var(--bg)",

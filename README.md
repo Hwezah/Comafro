@@ -56,7 +56,7 @@ src/
     (auth)/                 # Clerk sign-in / sign-up / dashboard with their own root layout
     global-not-found.tsx    # 404 for unmatched URLs
     globals.css             # Tailwind + shadcn token mapping
-    site.css                # Design tokens (cream + mono themes), base rules, mobile-portrait rules, hover states
+    site.css                # Design tokens (cream + dark grey themes), base rules, mobile-portrait rules, hover states
     fonts.ts                # Archivo, Newsreader, JetBrains Mono, Noto Kufi Arabic via next/font
   components/
     pages/en, pages/ar      # Page content, converted 1:1 from design/index.html

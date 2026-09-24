@@ -297,7 +297,7 @@ export function ArServicesPage() {
                 </li>
               </ul>
             </div>
-            <div style={{ background: "var(--ink)", color: "var(--bg)", padding: "22px", alignSelf: "start" }}>
+            <div data-band="" style={{ background: "var(--ink)", color: "var(--bg)", padding: "22px", alignSelf: "start" }}>
               <p style={{ fontSize: "11.5px", color: "var(--sage)" }}>لمشتري الشرق الأوسط</p>
               <p style={{ fontSize: "14.5px", lineHeight: "1.85", marginTop: "10px" }}>
                 تُجهَّز الشحنات وفق متطلبات الشهادات ووسم العلامات في سوق الوصول، بما يشمل علامات الشحن باللغة العربية
@@ -307,7 +307,7 @@ export function ArServicesPage() {
           </div>
         </div>
       </section>
-      <section style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre)" }}>٠٤ · الخدمات اللوجستية</p>
           <h2 style={{ fontSize: "clamp(25px,3.2vw,40px)", marginTop: "12px", lineHeight: "1.4", maxWidth: "26ch" }}>

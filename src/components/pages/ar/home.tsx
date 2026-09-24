@@ -283,7 +283,7 @@ export function ArHomePage() {
           </div>
         </div>
       </section>
-      <section style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <div
             style={{
