@@ -1,6 +1,7 @@
 import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
+import { clerkEnabled } from "@/lib/clerk";
 import { isLocale } from "@/lib/i18n";
 
 const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
@@ -20,6 +21,9 @@ export default function proxy(req: NextRequest, event: NextFetchEvent) {
 
   // The public /en and /ar site is static and does not need Clerk.
   if (isLocale(first)) return NextResponse.next();
+
+  // Without Clerk keys the auth routes render a "not configured" notice instead of failing.
+  if (!clerkEnabled) return NextResponse.next();
 
   return clerk(req, event);
 }

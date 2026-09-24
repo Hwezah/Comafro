@@ -14,11 +14,21 @@ Export website for Comafro General Trading Ltd: nine pages in English and Arabic
 
 ```bash
 npm install
-cp .env.example .env.local   # add your Clerk keys
+cp .env.example .env.local   # optional: add your Clerk keys
 npm run dev
 ```
 
 Open http://localhost:3000. It redirects to `/en`, or to `/ar` when the browser prefers Arabic.
+
+## Deploying to Vercel
+
+The site deploys with **no environment variables**. Clerk switches on only when both
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` are set (`src/lib/clerk.ts`). Until then the
+18 public pages are served as usual and the auth routes show a "not configured" notice instead of erroring.
+
+To turn on accounts, add both keys under Project → Settings → Environment Variables (for Production and
+Preview) and redeploy. `NEXT_PUBLIC_*` values are baked in at build time, so a redeploy is needed after
+changing them.
 
 ## Routes
 

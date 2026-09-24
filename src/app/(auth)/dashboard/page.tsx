@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 
+import { AuthNotConfigured } from "@/components/auth-not-configured";
 import {
   Card,
   CardContent,
@@ -7,8 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { clerkEnabled } from "@/lib/clerk";
 
 export default async function DashboardPage() {
+  if (!clerkEnabled) return <AuthNotConfigured />;
+
   const user = await currentUser();
 
   return (
