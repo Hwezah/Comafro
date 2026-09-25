@@ -1,9 +1,9 @@
 import { contact, dialable } from "@/lib/contact";
 import type { Locale } from "@/lib/i18n";
 
-const LABEL: Record<Locale, string> = { en: "Enquire on WhatsApp", ar: "استفسروا عبر واتساب" };
+const LABEL: Record<Locale, string> = { en: "Enquire On WhatsApp", ar: "استفسروا عبر واتساب" };
 
-/** Green "Enquire on WhatsApp" button used in the contact side panel and the mobile menu. */
+/** Green "Enquire On WhatsApp" button used in the contact side panel and the mobile menu. */
 export function WhatsAppButton({ lang, style }: { lang: Locale; style?: React.CSSProperties }) {
   return (
     <a
