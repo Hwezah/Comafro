@@ -71,6 +71,7 @@ export function Header() {
       }}
     >
       <div
+        data-hdrrow=""
         style={{
           maxWidth: "1440px",
           margin: "0 auto",
@@ -97,8 +98,14 @@ export function Header() {
               style={{ display: "block", height: "44px", width: "auto", flex: "0 0 auto" }}
             />
             <span style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <span style={{ fontSize: "21px", fontWeight: 700, letterSpacing: "0.02em", lineHeight: 1 }}>COMAFRO</span>
               <span
+                data-wordmark=""
+                style={{ fontSize: "21px", fontWeight: 700, letterSpacing: "0.02em", lineHeight: 1 }}
+              >
+                COMAFRO
+              </span>
+              <span
+                data-wordsub=""
                 style={{
                   fontSize: "9.5px",
                   fontWeight: 300,

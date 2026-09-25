@@ -106,6 +106,20 @@ figure svg { max-width: 100%; }
 .hover-whatsapp:hover { background: #178F47 !important; color: #FFFFFF !important; }
 .hover-panel-outline:hover { border-color: var(--bg) !important; background: rgba(var(--bg-rgb), 0.06) !important; color: var(--bg) !important; }
 
+/* Phones keep the header on one row: logo on the left, language switcher and menu stripes at the far right. */
+@media (max-width: 640px) and (orientation: portrait), (max-width: 950px) and (max-height: 500px) and (orientation: landscape) {
+  [data-hdrrow] { flex-wrap: nowrap !important; }
+  [data-logorow] { flex: 0 1 auto !important; min-width: 0; }
+  [data-navctl] { gap: 10px !important; }
+}
+@media (max-width: 380px) {
+  [data-logo] { gap: 8px !important; }
+  [data-logo] img { height: 38px !important; }
+  [data-wordmark] { font-size: 18px !important; }
+  [data-wordsub] { font-size: 8.5px !important; letter-spacing: 0.12em !important; }
+  [data-langrow] { padding: 0 10px !important; min-width: 52px !important; }
+}
+
 /* Phones in landscape use the mobile header too: drop-down menu instead of the side panel. */
 @media (max-width: 950px) and (max-height: 500px) and (orientation: landscape) {
   [data-desknav], [data-hdr-cta], [data-buyernav], [data-buyerbar] { display: none !important; }
