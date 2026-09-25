@@ -115,13 +115,20 @@ export function Header() {
             hrefLang={other}
             className="hover-accent-border"
             style={{
-              display: "block",
+              // Stretches to the height of the "Request a quote" button beside it.
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              alignSelf: "stretch",
               width: "max-content",
-              fontSize: "11.5px",
+              minWidth: "64px",
+              fontSize: ar ? "13px" : "13.5px",
+              fontWeight: 500,
               lineHeight: 1.2,
-              padding: "4px 8px",
-              border: "1px solid rgba(var(--ink-rgb),0.3)",
-              color: "var(--muted)",
+              padding: "0 16px",
+              border: "1px solid rgba(var(--ink-rgb),0.35)",
+              color: "var(--ink)",
+              letterSpacing: ar ? "0.08em" : undefined,
               fontFamily: ar ? MONO : KUFI,
             }}
           >
