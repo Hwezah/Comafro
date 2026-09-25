@@ -48,6 +48,7 @@ const T = {
   en: {
     buyers: "FOR BUYERS",
     quote: "Request a quote",
+    quoteShort: "Quote",
     other: "العربية",
     otherShort: "ع",
     otherName: "العربية",
@@ -58,6 +59,7 @@ const T = {
   ar: {
     buyers: "للمشترين",
     quote: "طلب عرض سعر",
+    quoteShort: "عرض سعر",
     other: "EN",
     otherShort: "EN",
     otherName: "English",
@@ -248,7 +250,8 @@ export function Header() {
                 ...(ar ? { lineHeight: 1.6, fontFamily: KUFI } : {}),
               }}
             >
-              {t.quote}
+              <span data-cta-full="">{t.quote}</span>
+              <span data-cta-short="">{t.quoteShort}</span>
             </Link>
           </div>
           <button

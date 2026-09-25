@@ -89,9 +89,17 @@ The account icon opens a Clerk-style sign-in card backed by a mock session in `l
 
 ## Header menu
 
-The two stripes at the right of the header open the **contact side panel** on tablets and desktops, and the
-**drop-down menu** on phones (portrait, and landscape up to 950px wide). The breakpoint lives in
-`MOBILE_MENU_QUERY` in `src/lib/contact.ts`.
+Buttons keep their normal size; when room runs out they switch to short labels ("Quote", "ع") instead of shrinking.
+
+| Width | Header |
+|---|---|
+| ≥ 1100px | Full navigation, "Request a quote", "العربية" |
+| 901–1099px | Full navigation, short labels "Quote" and "ع" |
+| ≤ 900px, phones in landscape | Logo · search · account · ع · Quote · stripes; navigation in the full-screen menu |
+| Phones in portrait | Logo · account · ع · stripes; search and Quote in the menu |
+
+The stripes open the **contact side panel** above 900px and the **full-screen menu** below. The breakpoint is
+`MOBILE_MENU_QUERY` in `src/lib/contact.ts`, kept in sync with the header rules in `src/app/site.css`.
 
 ## Before launch
 

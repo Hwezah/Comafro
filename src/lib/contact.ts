@@ -13,8 +13,8 @@ export const dialable = (number: string) => number.replace(/[^\d]/g, "");
 export const LAMI_MEAT_URL = "https://lami-meat-one.vercel.app/en";
 
 /**
- * Phones (portrait, and landscape up to small-tablet width) use the drop-down menu;
- * tablets and desktops get the contact side panel.
+ * Phones and portrait tablets (≤ 900px, or phones in landscape) use the full-screen menu;
+ * wider screens get the contact side panel. Keep in sync with the header rules in site.css.
  */
 export const MOBILE_MENU_QUERY =
-  "((max-width: 640px) and (orientation: portrait)), ((max-width: 950px) and (max-height: 500px) and (orientation: landscape))";
+  "(max-width: 900px), ((max-width: 950px) and (max-height: 500px) and (orientation: landscape))";
