@@ -4,10 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { contact, LAMI_MEAT_URL } from "@/lib/contact";
 import { pageHref, type Locale, type PageKey } from "@/lib/i18n";
-
-/** Subsidiary site; Comafro General Trading Ltd is Lami Meat's parent company. */
-const LAMI_MEAT_URL = "https://lami-meat-one.vercel.app/en";
 
 const COPY = {
   en: {
@@ -186,8 +184,8 @@ export function Footer({ lang }: { lang: Locale }) {
           <div>
             <p style={label}>{c.contact}</p>
             <div data-footcol="" style={col}>
-              <span style={{ ...item, direction: "ltr" }}>trade@comafro.com</span>
-              <span style={{ ...item, direction: "ltr" }}>+256 700 000 000</span>
+              <span style={{ ...item, direction: "ltr" }}>{contact.tradeEmail}</span>
+              <span style={{ ...item, direction: "ltr" }}>{contact.phone}</span>
               <span style={item}>{c.hours}</span>
             </div>
           </div>

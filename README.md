@@ -60,10 +60,11 @@ src/
     fonts.ts                # Archivo, Newsreader, JetBrains Mono, Noto Kufi Arabic via next/font
   components/
     pages/en, pages/ar      # Page content, converted 1:1 from design/index.html
-    site/                   # Header, footer, theme toggle, hero typewriter, custom select, enhancer
+    site/                   # Header, footer, contact side panel, theme toggle, hero typewriter, custom select, enhancer
     ui/                     # shadcn/ui
   context/app-context.tsx
   lib/i18n.ts               # Locales, page slugs, titles
+  lib/contact.ts            # Phone, WhatsApp, emails, Lami Meat link, mobile-menu breakpoint
   proxy.ts
 ```
 
@@ -72,8 +73,14 @@ Page components use the design's inline styles verbatim, so values can be checke
 mobile-portrait centering tags that `site.css` keys off. It also makes the shorter of two side-by-side columns
 sticky (below the header) while the taller one scrolls; hero rows and columns inside scrollable tables are left alone.
 
+## Header menu
+
+The two stripes at the right of the header open the **contact side panel** on tablets and desktops, and the
+**drop-down menu** on phones (portrait, and landscape up to 950px wide). The breakpoint lives in
+`MOBILE_MENU_QUERY` in `src/lib/contact.ts`.
+
 ## Before launch
 
 - The contact form shows a confirmation but does not send yet. Wire `submitForm` in `src/components/pages/*/contact.tsx` to an API route or form service.
-- Replace the placeholder phone number (+256 700 000 000) and confirm the email addresses.
+- Replace the placeholder phone and WhatsApp number (+256 700 000 000) in `src/lib/contact.ts` and confirm the email addresses.
 - Confirm the operating-record dates on Home and About.

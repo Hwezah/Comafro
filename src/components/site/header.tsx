@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { useApp } from "@/context/app-context";
+import { MOBILE_MENU_QUERY } from "@/lib/contact";
 import { pageHref, parsePath, type Locale, type PageKey } from "@/lib/i18n";
 
 const MAIN_NAV: Record<Locale, [PageKey, string][]> = {
@@ -49,12 +50,14 @@ const MONO = "var(--font-jetbrains),monospace";
 const PAD_X = "clamp(22px,5vw,80px)";
 
 export function Header() {
-  const { lang, menuOpen, toggleMenu, closeMenu } = useApp();
+  const { lang, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel } = useApp();
   const pathname = usePathname();
   const { page } = parsePath(pathname);
   const ar = lang === "ar";
   const other: Locale = ar ? "en" : "ar";
   const t = T[lang];
+  // Phones get the drop-down menu; tablets and desktops the contact side panel.
+  const onBurger = () => (window.matchMedia(MOBILE_MENU_QUERY).matches ? toggleMenu() : openPanel());
   const underline = (key: PageKey) => `2px solid ${key === page ? "var(--accent)" : "transparent"}`;
 
   return (
@@ -111,9 +114,20 @@ export function Header() {
           </Link>
         </div>
 
-        <div data-navctl="" style={{ display: "flex", alignItems: "center", gap: "14px", flex: "0 0 auto", order: 3 }}>
+        <div
+          data-navctl=""
+          style={{ display: "flex", alignItems: "center", gap: "14px", flex: "0 0 auto", order: 3, marginLeft: "auto" }}
+        >
           {/* Equal-width columns keep the language switcher exactly the size of "Request a quote". */}
-          <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "1fr", gap: "10px", alignSelf: "stretch" }}>
+          <div
+            style={{
+              display: "grid",
+              gridAutoFlow: "column",
+              gridAutoColumns: "1fr",
+              gap: "10px",
+              alignSelf: "stretch",
+            }}
+          >
             <Link
               href={pathname.replace(/^\/(en|ar)(?=\/|$)/, `/${other}`)}
               onClick={closeMenu}
@@ -158,32 +172,41 @@ export function Header() {
           </div>
           <button
             type="button"
-            onClick={toggleMenu}
+            onClick={onBurger}
             data-burger=""
-            aria-label="Menu"
-            aria-expanded={menuOpen}
+            className="hover-stripes"
+            aria-label={ar ? "القائمة" : "Menu"}
+            aria-haspopup="dialog"
+            aria-expanded={menuOpen || panelOpen}
             style={{
-              display: "none",
+              // Two long thin stripes; stretches to the height of the buttons beside it.
+              display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              gap: "7px",
-              width: "36px",
-              height: "36px",
+              gap: "8px",
+              width: "44px",
+              minHeight: "32px",
+              alignSelf: "stretch",
               flex: "0 0 auto",
               padding: 0,
               border: 0,
               background: "transparent",
+              color: "var(--ink)",
               cursor: "pointer",
             }}
           >
             {menuOpen ? (
-              <svg viewBox="0 0 36 36" style={{ width: "36px", height: "36px", display: "block" }} aria-hidden="true">
-                <path d="M6 6 L30 30 M30 6 L6 30" strokeWidth="1.25" fill="none" style={{ stroke: "var(--ink)" }} />
+              <svg
+                viewBox="0 0 36 36"
+                style={{ width: "36px", height: "36px", display: "block", margin: "0 auto" }}
+                aria-hidden="true"
+              >
+                <path d="M6 6 L30 30 M30 6 L6 30" strokeWidth="1.25" fill="none" style={{ stroke: "currentColor" }} />
               </svg>
             ) : (
               <>
-                <span style={{ display: "block", height: "1.5px", background: "var(--ink)" }} />
-                <span style={{ display: "block", height: "1.5px", background: "var(--ink)" }} />
+                <span style={{ display: "block", height: "1.5px", background: "currentColor" }} />
+                <span style={{ display: "block", height: "1.5px", background: "currentColor" }} />
               </>
             )}
           </button>
@@ -273,6 +296,10 @@ export function Header() {
             borderTop: "1px solid rgba(var(--ink-rgb),0.16)",
             background: "var(--bg2)",
             padding: `6px ${PAD_X} 18px`,
+            // The header is sticky, so a long menu scrolls inside the screen (phones in landscape).
+            maxHeight: "calc(100dvh - 64px)",
+            overflowY: "auto",
+            overscrollBehavior: "contain",
           }}
         >
           <div

@@ -1,15 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  useSyncExternalStore,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
 import type { Locale } from "@/lib/i18n";
 
@@ -25,6 +17,10 @@ type AppContextValue = {
   menuOpen: boolean;
   toggleMenu: () => void;
   closeMenu: () => void;
+  /** Contact side panel (tablet and desktop). */
+  panelOpen: boolean;
+  openPanel: () => void;
+  closePanel: () => void;
 };
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -48,22 +44,14 @@ function getServerThemeSnapshot(): Theme {
   return "light";
 }
 
-export function AppProvider({
-  lang,
-  children,
-}: {
-  lang: Locale;
-  children: React.ReactNode;
-}) {
-  const theme = useSyncExternalStore(
-    subscribe,
-    getThemeSnapshot,
-    getServerThemeSnapshot
-  );
+export function AppProvider({ lang, children }: { lang: Locale; children: React.ReactNode }) {
+  const theme = useSyncExternalStore(subscribe, getThemeSnapshot, getServerThemeSnapshot);
   const [menu, setMenu] = useState({ open: false, path: "" });
+  const [panel, setPanel] = useState({ open: false, path: "" });
   const pathname = usePathname();
-  // The drawer closes whenever the route changes.
+  // The drawer and the side panel close whenever the route changes.
   const menuOpen = menu.open && menu.path === pathname;
+  const panelOpen = panel.open && panel.path === pathname;
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -76,15 +64,14 @@ export function AppProvider({
     listeners.forEach((listener) => listener());
   }, [theme]);
 
-  const toggleMenu = useCallback(
-    () => setMenu({ open: !menuOpen, path: pathname }),
-    [menuOpen, pathname]
-  );
+  const toggleMenu = useCallback(() => setMenu({ open: !menuOpen, path: pathname }), [menuOpen, pathname]);
   const closeMenu = useCallback(() => setMenu({ open: false, path: "" }), []);
+  const openPanel = useCallback(() => setPanel({ open: true, path: pathname }), [pathname]);
+  const closePanel = useCallback(() => setPanel({ open: false, path: "" }), []);
 
   const value = useMemo(
-    () => ({ lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu }),
-    [lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu]
+    () => ({ lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel, closePanel }),
+    [lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel, closePanel],
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

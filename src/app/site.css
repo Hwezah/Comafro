@@ -100,6 +100,23 @@ figure svg { max-width: 100%; }
 .hover-bg:hover { color: var(--bg) !important; }
 .hover-white:hover { color: #FFFFFF !important; }
 .hover-ochre-border:hover { border-color: var(--ochre) !important; }
+/* Links in the contact panel take the panel's text colour (the base link colour is --ink). */
+[data-panel] dd a { color: inherit; }
+.hover-stripes:hover { color: var(--accent) !important; }
+.hover-whatsapp:hover { background: #178F47 !important; color: #FFFFFF !important; }
+.hover-panel-outline:hover { border-color: var(--bg) !important; background: rgba(var(--bg-rgb), 0.06) !important; color: var(--bg) !important; }
+
+/* Phones in landscape use the mobile header too: drop-down menu instead of the side panel. */
+@media (max-width: 950px) and (max-height: 500px) and (orientation: landscape) {
+  [data-desknav], [data-hdr-cta], [data-buyernav], [data-buyerbar] { display: none !important; }
+  [data-drawer] { display: flex !important; }
+}
+@media (max-width: 640px) and (orientation: portrait) {
+  [data-burger] { min-height: 36px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-panel], [data-panel-backdrop] { transition: none !important; }
+}
 
 /* Scroll reveal: hide targets until the reveal script has picked them up (see components/site/enhancer.tsx). */
-html.rv :is(h1, h2, h3, h4, [data-reveal]):not([data-rv]) { opacity: 0; }
+html.rv main :is(h1, h2, h3, h4, [data-reveal]):not([data-rv]) { opacity: 0; }

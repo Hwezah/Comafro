@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { ContactPanel } from "@/components/site/contact-panel";
 import { Enhancer } from "@/components/site/enhancer";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
@@ -44,6 +45,7 @@ export default async function SiteLayout({ children, params }: LayoutProps<"/[la
             <main style={{ flex: 1 }}>{children}</main>
             <Footer lang={lang} />
           </div>
+          <ContactPanel />
           <ThemeToggle />
           <Enhancer />
         </AppProvider>

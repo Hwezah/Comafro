@@ -15,8 +15,8 @@ import { useEffect } from "react";
 const MOBILE = "(max-width: 640px) and (orientation: portrait)";
 const REDUCED = "(prefers-reduced-motion: reduce)";
 
-function scanReveal(io: IntersectionObserver) {
-  const nodes = Array.from(document.querySelectorAll<HTMLElement>("h1, h2, h3, h4, [data-reveal]"));
+function scanReveal(main: HTMLElement, io: IntersectionObserver) {
+  const nodes = Array.from(main.querySelectorAll<HTMLElement>("h1, h2, h3, h4, [data-reveal]"));
   const groups = new Map<Element, number>();
   nodes.forEach((el) => {
     if (el.dataset.rv) return;
@@ -279,7 +279,7 @@ export function Enhancer() {
     const run = () => {
       if (revealIO && ruleIO) {
         scanRules(ruleIO);
-        scanReveal(revealIO);
+        scanReveal(main, revealIO);
       }
       symmetryPass(main);
       tagLayout(main);
