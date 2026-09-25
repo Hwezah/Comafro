@@ -195,6 +195,7 @@ export function Header() {
           <AccountButton />
           {/* Equal-width columns keep the language switcher exactly the size of "Request a quote". */}
           <div
+            data-hdr-pair=""
             style={{
               display: "grid",
               gridAutoFlow: "column",
