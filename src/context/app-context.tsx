@@ -21,6 +21,14 @@ type AppContextValue = {
   panelOpen: boolean;
   openPanel: () => void;
   closePanel: () => void;
+  /** Site search overlay. */
+  searchOpen: boolean;
+  openSearch: () => void;
+  closeSearch: () => void;
+  /** Mock sign-in dialog (placeholder until real auth). */
+  authOpen: boolean;
+  openAuth: () => void;
+  closeAuth: () => void;
 };
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -48,6 +56,8 @@ export function AppProvider({ lang, children }: { lang: Locale; children: React.
   const theme = useSyncExternalStore(subscribe, getThemeSnapshot, getServerThemeSnapshot);
   const [menu, setMenu] = useState({ open: false, path: "" });
   const [panel, setPanel] = useState({ open: false, path: "" });
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const pathname = usePathname();
   // The drawer and the side panel close whenever the route changes.
   const menuOpen = menu.open && menu.path === pathname;
@@ -68,10 +78,52 @@ export function AppProvider({ lang, children }: { lang: Locale; children: React.
   const closeMenu = useCallback(() => setMenu({ open: false, path: "" }), []);
   const openPanel = useCallback(() => setPanel({ open: true, path: pathname }), [pathname]);
   const closePanel = useCallback(() => setPanel({ open: false, path: "" }), []);
+  const openSearch = useCallback(() => {
+    setMenu({ open: false, path: "" });
+    setSearchOpen(true);
+  }, []);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
+  const openAuth = useCallback(() => {
+    setMenu({ open: false, path: "" });
+    setAuthOpen(true);
+  }, []);
+  const closeAuth = useCallback(() => setAuthOpen(false), []);
 
   const value = useMemo(
-    () => ({ lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel, closePanel }),
-    [lang, theme, toggleTheme, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel, closePanel],
+    () => ({
+      lang,
+      theme,
+      toggleTheme,
+      menuOpen,
+      toggleMenu,
+      closeMenu,
+      panelOpen,
+      openPanel,
+      closePanel,
+      searchOpen,
+      openSearch,
+      closeSearch,
+      authOpen,
+      openAuth,
+      closeAuth,
+    }),
+    [
+      lang,
+      theme,
+      toggleTheme,
+      menuOpen,
+      toggleMenu,
+      closeMenu,
+      panelOpen,
+      openPanel,
+      closePanel,
+      searchOpen,
+      openSearch,
+      closeSearch,
+      authOpen,
+      openAuth,
+      closeAuth,
+    ],
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

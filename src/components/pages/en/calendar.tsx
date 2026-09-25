@@ -1,7 +1,7 @@
 export function EnCalendarPage() {
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,5vw,68px) clamp(22px,5vw,80px)" }}>
           <p
             style={{
@@ -30,7 +30,7 @@ export function EnCalendarPage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -459,7 +459,7 @@ export function EnCalendarPage() {
           </div>
         </div>
       </section>
-      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section id="s3" data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div
           style={{
             maxWidth: "1440px",

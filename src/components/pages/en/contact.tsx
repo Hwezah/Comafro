@@ -16,7 +16,7 @@ export function EnContactPage() {
 
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,5vw,68px) clamp(22px,5vw,80px)" }}>
           <p
             style={{
@@ -45,7 +45,7 @@ export function EnContactPage() {
           </p>
         </div>
       </section>
-      <section>
+      <section id="s2">
         <div
           style={{
             maxWidth: "1440px",
@@ -126,7 +126,7 @@ export function EnContactPage() {
                 >
                   Telephone
                 </span>
-                <span style={{ fontSize: "15px", textAlign: "right" }}>+256 700 000 000</span>
+                <span style={{ fontSize: "15px", textAlign: "right" }}>+256 773 828 552</span>
               </div>
               <div
                 style={{
@@ -142,7 +142,7 @@ export function EnContactPage() {
                 >
                   WhatsApp
                 </span>
-                <span style={{ fontSize: "15px", textAlign: "right" }}>+256 700 000 000</span>
+                <span style={{ fontSize: "15px", textAlign: "right" }}>+256 773 828 552</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", gap: "20px", padding: "14px 0" }}>
                 <span

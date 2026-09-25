@@ -1,8 +1,7 @@
 /** Trade-desk contact details shared by the footer and the contact side panel. */
 export const contact = {
-  // Placeholder until launch (see README): replace with the trade desk's real number.
-  phone: "+256 700 000 000",
-  whatsapp: "+256 700 000 000",
+  phone: "+256 773 828 552",
+  whatsapp: "+256 773 828 552",
   tradeEmail: "trade@comafro.com",
   logisticsEmail: "logistics@comafro.com",
 };

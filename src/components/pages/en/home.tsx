@@ -4,7 +4,7 @@ import { HeroWord } from "@/components/site/hero-word";
 export function EnHomePage() {
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -309,7 +309,7 @@ export function EnHomePage() {
           </div>
         </div>
       </section>
-      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section id="s2" data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(40px,5vw,72px) clamp(22px,5vw,80px)" }}>
           <div
             style={{
@@ -436,7 +436,7 @@ export function EnHomePage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s3" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(40px,5vw,76px) clamp(22px,5vw,80px)" }}>
           <p
             style={{
@@ -516,7 +516,7 @@ export function EnHomePage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s4" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <div
             style={{
@@ -688,7 +688,7 @@ export function EnHomePage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s5" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -869,7 +869,7 @@ export function EnHomePage() {
           </div>
         </div>
       </section>
-      <section>
+      <section id="s6">
         <div
           style={{
             maxWidth: "1440px",

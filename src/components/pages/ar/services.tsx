@@ -3,7 +3,7 @@ import Link from "next/link";
 export function ArServicesPage() {
   return (
     <div dir="rtl" style={{ fontFamily: "var(--font-kufi),sans-serif" }}>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre-deep)" }}>خدماتنا</p>
           <h1 style={{ fontSize: "clamp(28px,4vw,48px)", marginTop: "12px", lineHeight: "1.35", fontWeight: "700" }}>
@@ -15,7 +15,7 @@ export function ArServicesPage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre)" }}>٠١ · الحقل</p>
           <h2 style={{ fontSize: "clamp(25px,3.2vw,40px)", marginTop: "12px", lineHeight: "1.4", maxWidth: "30ch" }}>
@@ -106,7 +106,7 @@ export function ArServicesPage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s3" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre)" }}>٠٢ · التسمين</p>
           <h2 style={{ fontSize: "clamp(25px,3.2vw,40px)", marginTop: "12px", lineHeight: "1.4", maxWidth: "30ch" }}>
@@ -244,7 +244,7 @@ export function ArServicesPage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s4" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre)" }}>٠٣ · التصنيع</p>
           <h2 style={{ fontSize: "clamp(25px,3.2vw,40px)", marginTop: "12px", lineHeight: "1.4", maxWidth: "30ch" }}>
@@ -307,7 +307,7 @@ export function ArServicesPage() {
           </div>
         </div>
       </section>
-      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section id="s5" data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre)" }}>٠٤ · الخدمات اللوجستية</p>
           <h2 style={{ fontSize: "clamp(25px,3.2vw,40px)", marginTop: "12px", lineHeight: "1.4", maxWidth: "26ch" }}>

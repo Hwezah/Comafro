@@ -3,7 +3,7 @@ import Link from "next/link";
 export function EnResourcesPage() {
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,5vw,68px) clamp(22px,5vw,80px)" }}>
           <p
             style={{
@@ -131,7 +131,7 @@ export function EnResourcesPage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,56px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(24px,2.8vw,32px)" }}>Trading terms, plainly</h2>
           <div
@@ -204,7 +204,7 @@ export function EnResourcesPage() {
           </div>
         </div>
       </section>
-      <section>
+      <section id="s3">
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,56px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(24px,2.8vw,32px)" }}>Questions buyers ask us</h2>
           <div

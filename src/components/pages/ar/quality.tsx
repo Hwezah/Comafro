@@ -3,7 +3,7 @@ import Link from "next/link";
 export function ArQualityPage() {
   return (
     <div dir="rtl" style={{ fontFamily: "var(--font-kufi),sans-serif" }}>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <p style={{ fontSize: "12px", color: "var(--ochre-deep)" }}>الجودة والمطابقة</p>
           <h1 style={{ fontSize: "clamp(28px,4vw,48px)", marginTop: "12px", lineHeight: "1.35", fontWeight: "700" }}>
@@ -15,7 +15,7 @@ export function ArQualityPage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(23px,2.9vw,34px)", lineHeight: "1.4" }}>إجراء الحلال، خطوة بخطوة</h2>
           <div style={{ marginTop: "clamp(22px,3vw,34px)", borderTop: "1px solid rgba(var(--ink-rgb),0.35)" }}>
@@ -146,7 +146,7 @@ export function ArQualityPage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s3" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(23px,2.9vw,34px)", lineHeight: "1.4" }}>سلسلة التبريد، مُسجَّلة</h2>
           <p style={{ fontSize: "15.5px", lineHeight: "1.9", color: "var(--ink-soft)", marginTop: "14px" }}>
@@ -240,7 +240,7 @@ export function ArQualityPage() {
           </div>
         </div>
       </section>
-      <section>
+      <section id="s4">
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4.5vw,64px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(23px,2.9vw,34px)", lineHeight: "1.4" }}>المعايير والتسجيلات</h2>
           <div

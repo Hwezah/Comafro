@@ -3,7 +3,7 @@ import Link from "next/link";
 export function EnSourcingPage() {
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -566,7 +566,7 @@ export function EnSourcingPage() {
           </figure>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,56px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(24px,2.8vw,32px)" }}>Catchment</h2>
           <div style={{ marginTop: "clamp(22px,3vw,34px)", overflowX: "auto" }}>
@@ -690,7 +690,7 @@ export function EnSourcingPage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s3" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -933,7 +933,7 @@ export function EnSourcingPage() {
           </div>
         </div>
       </section>
-      <section>
+      <section id="s4">
         <div
           style={{
             maxWidth: "1440px",

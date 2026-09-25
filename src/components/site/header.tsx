@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
+import { AccountButton, iconButton } from "@/components/site/mock-auth";
+import { prefetchSearch, SearchIcon } from "@/components/site/search-dialog";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { useApp } from "@/context/app-context";
 import { MOBILE_MENU_QUERY } from "@/lib/contact";
@@ -43,8 +45,24 @@ const BUYER_NAV: Record<Locale, [PageKey, string][]> = {
 };
 
 const T = {
-  en: { buyers: "FOR BUYERS", quote: "Request a quote", other: "العربية" },
-  ar: { buyers: "للمشترين", quote: "طلب عرض سعر", other: "EN" },
+  en: {
+    buyers: "FOR BUYERS",
+    quote: "Request a quote",
+    other: "العربية",
+    otherShort: "ع",
+    otherName: "العربية",
+    search: "Search",
+    tagline: "PRODUCE & HALAL PROTEIN · KAMPALA",
+  },
+  ar: {
+    buyers: "للمشترين",
+    quote: "طلب عرض سعر",
+    other: "EN",
+    otherShort: "EN",
+    otherName: "English",
+    search: "بحث",
+    tagline: "منتجات طازجة ولحوم حلال · كمبالا",
+  },
 };
 
 const KUFI = "var(--font-kufi),sans-serif";
@@ -52,7 +70,7 @@ const MONO = "var(--font-jetbrains),monospace";
 const PAD_X = "clamp(22px,5vw,80px)";
 
 export function Header() {
-  const { lang, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel } = useApp();
+  const { lang, menuOpen, toggleMenu, closeMenu, panelOpen, openPanel, openSearch } = useApp();
   const pathname = usePathname();
   const { page } = parsePath(pathname);
   const ar = lang === "ar";
@@ -83,6 +101,25 @@ export function Header() {
         borderBottom: "1px solid rgba(var(--ink-rgb),0.16)",
       }}
     >
+      <div
+        data-tagline=""
+        dir={ar ? "rtl" : undefined}
+        style={{
+          display: "none",
+          textAlign: "center",
+          padding: "8px 13px",
+          borderBottom: "1px solid rgba(var(--ink-rgb),0.12)",
+          color: "var(--ochre-deep)",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          ...(ar
+            ? { fontFamily: KUFI, fontSize: "12px" }
+            : { fontFamily: MONO, fontSize: "10.5px", letterSpacing: "0.22em" }),
+        }}
+      >
+        {t.tagline}
+      </div>
       <div
         data-hdrrow=""
         style={{
@@ -138,6 +175,21 @@ export function Header() {
           data-navctl=""
           style={{ display: "flex", alignItems: "center", gap: "14px", flex: "0 0 auto", order: 3, marginLeft: "auto" }}
         >
+          <button
+            type="button"
+            data-hdr-icon=""
+            onClick={openSearch}
+            onPointerEnter={() => prefetchSearch(lang)}
+            onFocus={() => prefetchSearch(lang)}
+            aria-label={t.search}
+            aria-haspopup="dialog"
+            title={`${t.search} (/)`}
+            className="hover-stripes"
+            style={iconButton}
+          >
+            <SearchIcon size={24} />
+          </button>
+          <AccountButton />
           {/* Equal-width columns keep the language switcher exactly the size of "Request a quote". */}
           <div
             style={{
@@ -168,8 +220,10 @@ export function Header() {
                 letterSpacing: ar ? "0.08em" : undefined,
                 fontFamily: ar ? MONO : KUFI,
               }}
+              aria-label={t.otherName}
             >
-              {t.other}
+              <span data-lbl-full="">{t.other}</span>
+              <span data-lbl-short="">{t.otherShort}</span>
             </Link>
             <Link
               href={pageHref(lang, "contact")}
@@ -181,6 +235,9 @@ export function Header() {
                 fontWeight: 500,
                 background: "var(--ink)",
                 color: "var(--bg)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 padding: "9px 16px",
                 whiteSpace: "nowrap",
                 textAlign: "center",
@@ -221,12 +278,12 @@ export function Header() {
                 style={{ width: "36px", height: "36px", display: "block", margin: "0 auto" }}
                 aria-hidden="true"
               >
-                <path d="M6 6 L30 30 M30 6 L6 30" strokeWidth="1.25" fill="none" style={{ stroke: "currentColor" }} />
+                <path d="M7 7 L29 29 M29 7 L7 29" strokeWidth="1" fill="none" style={{ stroke: "currentColor" }} />
               </svg>
             ) : (
               <>
-                <span style={{ display: "block", height: "1.5px", background: "currentColor" }} />
-                <span style={{ display: "block", height: "1.5px", background: "currentColor" }} />
+                <span style={{ display: "block", height: "1px", background: "currentColor" }} />
+                <span style={{ display: "block", height: "1px", background: "currentColor" }} />
               </>
             )}
           </button>

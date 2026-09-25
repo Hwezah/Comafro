@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 
 import { ContactPanel } from "@/components/site/contact-panel";
 import { Enhancer } from "@/components/site/enhancer";
+import { AuthDialog } from "@/components/site/mock-auth";
+import { SearchDialog } from "@/components/site/search-dialog";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 import { ThemeToggle } from "@/components/site/theme-toggle";
@@ -46,6 +48,8 @@ export default async function SiteLayout({ children, params }: LayoutProps<"/[la
             <Footer lang={lang} />
           </div>
           <ContactPanel />
+          <SearchDialog />
+          <AuthDialog />
           <ThemeToggle />
           <Enhancer />
         </AppProvider>

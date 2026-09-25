@@ -3,7 +3,7 @@ import Link from "next/link";
 export function EnProductsPage() {
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,5vw,68px) clamp(22px,5vw,80px)" }}>
           <p
             style={{
@@ -184,7 +184,7 @@ export function EnProductsPage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -641,7 +641,7 @@ export function EnProductsPage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s3" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -938,7 +938,7 @@ export function EnProductsPage() {
           </figure>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s4" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -1226,7 +1226,7 @@ export function EnProductsPage() {
           </div>
         </div>
       </section>
-      <section data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
+      <section id="s5" data-band="" style={{ background: "var(--ink)", color: "var(--bg)" }}>
         <div
           style={{
             maxWidth: "1440px",
@@ -1436,7 +1436,7 @@ export function EnProductsPage() {
           </figure>
         </div>
       </section>
-      <section>
+      <section id="s6">
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,60px) clamp(22px,5vw,80px)" }}>
           <div
             style={{

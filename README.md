@@ -73,6 +73,20 @@ Page components use the design's inline styles verbatim, so values can be checke
 mobile-portrait centering tags that `site.css` keys off. It also makes the shorter of two side-by-side columns
 sticky (below the header) while the taller one scrolls; hero rows and columns inside scrollable tables are left alone.
 
+## Search
+
+The header search (also `/` or Ctrl/Cmd+K) fetches the nine pages for the current language on first open and
+searches every section (`src/lib/search.ts`). Matching ignores case and accents; normalizes Arabic letter variants,
+diacritics, prefixes (و ف ب ل ال) and Arabic-Indic digits; matches partial words, simple plurals, quoted phrases,
+synonyms (e.g. banana → matoke, meat → halal beef) and corrects one-letter typos. Results link to the section
+(`/en/products#s3`).
+
+## Accounts (placeholder)
+
+The account icon opens a Clerk-style sign-in card backed by a mock session in `localStorage`
+(`src/components/site/mock-auth.tsx`). It needs no keys and sends nothing. Real Clerk stays optional: see
+"Deploying to Vercel".
+
 ## Header menu
 
 The two stripes at the right of the header open the **contact side panel** on tablets and desktops, and the
@@ -82,5 +96,5 @@ The two stripes at the right of the header open the **contact side panel** on ta
 ## Before launch
 
 - The contact form shows a confirmation but does not send yet. Wire `submitForm` in `src/components/pages/*/contact.tsx` to an API route or form service.
-- Replace the placeholder phone and WhatsApp number (+256 700 000 000) in `src/lib/contact.ts` and confirm the email addresses.
+- Confirm the trade-desk email addresses (the phone and WhatsApp number, +256 773 828 552, live in `src/lib/contact.ts`).
 - Confirm the operating-record dates on Home and About.

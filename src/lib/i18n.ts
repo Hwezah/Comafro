@@ -72,3 +72,29 @@ export const siteDescription: Record<Locale, string> = {
   en: "Comafro Limited owns the whole chain: contracted growers and cattle supply in central Uganda, feedlot management, halal-standard processing, and export documentation and freight.",
   ar: "شركة كومافرو المحدودة تدير سلسلة التوريد كاملة: مزارعون متعاقدون وتوريد الأبقار في وسط أوغندا، وإدارة التسمين، والتصنيع الحلال، ومستندات التصدير والشحن.",
 };
+
+/** Short page names, as used in navigation and search results. */
+export const pageNames: Record<Locale, Record<PageKey, string>> = {
+  en: {
+    home: "Home",
+    about: "About",
+    services: "What we do",
+    products: "Products",
+    contact: "Contact",
+    quality: "Quality & compliance",
+    calendar: "Seasonality",
+    sourcing: "Sourcing network",
+    resources: "Buyer resources",
+  },
+  ar: {
+    home: "الرئيسية",
+    about: "عن الشركة",
+    services: "خدماتنا",
+    products: "المنتجات",
+    contact: "اتصل بنا",
+    quality: "الجودة والمطابقة",
+    calendar: "مواسم التوريد",
+    sourcing: "شبكة المزارعين",
+    resources: "موارد المشترين",
+  },
+};

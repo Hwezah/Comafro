@@ -3,7 +3,7 @@ import Link from "next/link";
 export function EnQualityPage() {
   return (
     <div>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s1" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(36px,5vw,68px) clamp(22px,5vw,80px)" }}>
           <p
             style={{
@@ -33,7 +33,7 @@ export function EnQualityPage() {
           </p>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
+      <section id="s2" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,60px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(24px,2.8vw,32px)" }}>The halal procedure, step by step</h2>
           <div style={{ marginTop: "clamp(22px,3vw,36px)", borderTop: "1px solid rgba(var(--ink-rgb),0.35)" }}>
@@ -184,7 +184,7 @@ export function EnQualityPage() {
           </div>
         </div>
       </section>
-      <section style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
+      <section id="s3" style={{ borderBottom: "1px solid rgba(var(--ink-rgb),0.16)", background: "var(--bg2)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,60px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(24px,2.8vw,32px)" }}>Cold chain, recorded</h2>
           <p
@@ -308,7 +308,7 @@ export function EnQualityPage() {
           </div>
         </div>
       </section>
-      <section>
+      <section id="s4">
         <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "clamp(32px,4vw,60px) clamp(22px,5vw,80px)" }}>
           <h2 style={{ fontSize: "clamp(24px,2.8vw,32px)" }}>Standards and registrations</h2>
           <div
