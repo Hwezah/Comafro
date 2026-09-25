@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 
 import { pageHref, type Locale, type PageKey } from "@/lib/i18n";
 
+/** Subsidiary site; Comafro General Trading Ltd is Lami Meat's parent company. */
+const LAMI_MEAT_URL = "https://lami-meat-one.vercel.app/en";
+
 const COPY = {
   en: {
     blurb: "Agricultural export, feedlot management, halal processing and freight. Kireka, Wakiso District, Uganda.",
@@ -13,6 +16,8 @@ const COPY = {
     buyers: "For buyers",
     contact: "Contact",
     markets: "Markets",
+    group: "Group company",
+    lamiNote: "A Comafro company",
     pageLinks: [
       ["home", "Home"],
       ["about", "About"],
@@ -38,6 +43,8 @@ const COPY = {
     buyers: "للمشترين",
     contact: "للتواصل",
     markets: "الأسواق",
+    group: "شركة تابعة",
+    lamiNote: "إحدى شركات كومافرو",
     pageLinks: [
       ["home", "الرئيسية"],
       ["about", "عن الشركة"],
@@ -141,6 +148,22 @@ export function Footer({ lang }: { lang: Locale }) {
             >
               {c.blurb}
             </p>
+            <p style={{ ...label, marginTop: "22px" }}>{c.group}</p>
+            <div data-footcol="" style={{ ...col, gap: "4px" }}>
+              <a
+                href={LAMI_MEAT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover-white"
+                style={{ ...item, display: "inline-flex", alignItems: "baseline", gap: "6px", fontWeight: 600 }}
+              >
+                <span dir="ltr">Lami Meat</span>
+                <span aria-hidden="true" style={{ fontSize: "0.85em" }}>
+                  ↗
+                </span>
+              </a>
+              <span style={{ ...label, ...(ar ? {} : { fontSize: "11px" }) }}>{c.lamiNote}</span>
+            </div>
           </div>
           <div data-footpair="">
             <p style={label}>{c.pages}</p>
