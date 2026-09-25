@@ -350,24 +350,25 @@ export function AuthDialog() {
           className="hover-accent"
           style={{
             position: "absolute",
-            top: "10px",
-            [ar ? "left" : "right"]: "10px",
-            width: "36px",
-            height: "36px",
+            top: "6px",
+            [ar ? "left" : "right"]: "6px",
+            width: "56px",
+            height: "56px",
             display: "grid",
             placeItems: "center",
             border: 0,
             background: "transparent",
-            color: "var(--muted)",
+            color: "var(--ink)",
             cursor: "pointer",
           }}
         >
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path d="M5 5 L19 19 M19 5 L5 19" stroke="currentColor" strokeWidth="1.4" fill="none" />
+          {/* Big and thin, like the side panel and search close buttons. */}
+          <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+            <path d="M7 7 L33 33 M33 7 L7 33" stroke="currentColor" strokeWidth="1" fill="none" />
           </svg>
         </button>
 
-        <div style={{ padding: "34px 32px 26px", textAlign: "center" }}>
+        <div style={{ padding: "52px 32px 26px", textAlign: "center" }}>
           <Image
             src="/assets/comafro-mark.png"
             alt=""
