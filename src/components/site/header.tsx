@@ -80,7 +80,11 @@ export function Header() {
         }}
       >
         <div data-logorow="" style={{ display: "flex", alignItems: "center", gap: "14px", flex: "0 0 auto" }}>
-          <Link href={pageHref(lang, "home")} data-logo="" style={{ display: "flex", alignItems: "center", gap: "11px" }}>
+          <Link
+            href={pageHref(lang, "home")}
+            data-logo=""
+            style={{ display: "flex", alignItems: "center", gap: "11px" }}
+          >
             <Image
               src="/assets/comafro-mark.png"
               alt="Comafro mark"
@@ -108,49 +112,50 @@ export function Header() {
         </div>
 
         <div data-navctl="" style={{ display: "flex", alignItems: "center", gap: "14px", flex: "0 0 auto", order: 3 }}>
-          <Link
-            href={pathname.replace(/^\/(en|ar)(?=\/|$)/, `/${other}`)}
-            onClick={closeMenu}
-            data-langrow=""
-            hrefLang={other}
-            className="hover-accent-border"
-            style={{
-              // Stretches to the height of the "Request a quote" button beside it.
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              alignSelf: "stretch",
-              width: "max-content",
-              minWidth: "64px",
-              fontSize: ar ? "13px" : "13.5px",
-              fontWeight: 500,
-              lineHeight: 1.2,
-              padding: "0 16px",
-              border: "1px solid rgba(var(--ink-rgb),0.35)",
-              color: "var(--ink)",
-              letterSpacing: ar ? "0.08em" : undefined,
-              fontFamily: ar ? MONO : KUFI,
-            }}
-          >
-            {t.other}
-          </Link>
-          <Link
-            href={pageHref(lang, "contact")}
-            data-hdr-cta=""
-            dir={ar ? "rtl" : undefined}
-            className="hover-btn"
-            style={{
-              fontSize: ar ? "13.5px" : "14px",
-              fontWeight: 500,
-              background: "var(--ink)",
-              color: "var(--bg)",
-              padding: "9px 16px",
-              whiteSpace: "nowrap",
-              ...(ar ? { lineHeight: 1.6, fontFamily: KUFI } : {}),
-            }}
-          >
-            {t.quote}
-          </Link>
+          {/* Equal-width columns keep the language switcher exactly the size of "Request a quote". */}
+          <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "1fr", gap: "10px", alignSelf: "stretch" }}>
+            <Link
+              href={pathname.replace(/^\/(en|ar)(?=\/|$)/, `/${other}`)}
+              onClick={closeMenu}
+              data-langrow=""
+              hrefLang={other}
+              className="hover-accent-border"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minWidth: "64px",
+                fontSize: ar ? "13px" : "13.5px",
+                fontWeight: 500,
+                lineHeight: 1.2,
+                padding: "0 16px",
+                border: "1px solid rgba(var(--ink-rgb),0.35)",
+                color: "var(--ink)",
+                letterSpacing: ar ? "0.08em" : undefined,
+                fontFamily: ar ? MONO : KUFI,
+              }}
+            >
+              {t.other}
+            </Link>
+            <Link
+              href={pageHref(lang, "contact")}
+              data-hdr-cta=""
+              dir={ar ? "rtl" : undefined}
+              className="hover-btn"
+              style={{
+                fontSize: ar ? "13.5px" : "14px",
+                fontWeight: 500,
+                background: "var(--ink)",
+                color: "var(--bg)",
+                padding: "9px 16px",
+                whiteSpace: "nowrap",
+                textAlign: "center",
+                ...(ar ? { lineHeight: 1.6, fontFamily: KUFI } : {}),
+              }}
+            >
+              {t.quote}
+            </Link>
+          </div>
           <button
             type="button"
             onClick={toggleMenu}
@@ -212,10 +217,7 @@ export function Header() {
       </div>
 
       {!menuOpen && (
-        <div
-          data-buyerbar=""
-          style={{ borderTop: "1px solid rgba(var(--ink-rgb),0.12)", background: "var(--bg2)" }}
-        >
+        <div data-buyerbar="" style={{ borderTop: "1px solid rgba(var(--ink-rgb),0.12)", background: "var(--bg2)" }}>
           <div
             data-buyernav=""
             dir={ar ? "rtl" : undefined}
