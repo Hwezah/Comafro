@@ -52,6 +52,7 @@ const T = {
     otherShort: "ع",
     otherName: "العربية",
     search: "Search",
+    searchSite: "Search the site",
     tagline: "PRODUCE & HALAL PROTEIN · KAMPALA",
   },
   ar: {
@@ -61,6 +62,7 @@ const T = {
     otherShort: "EN",
     otherName: "English",
     search: "بحث",
+    searchSite: "ابحثوا في الموقع",
     tagline: "منتجات طازجة ولحوم حلال · كمبالا",
   },
 };
@@ -178,6 +180,7 @@ export function Header() {
           <button
             type="button"
             data-hdr-icon=""
+            data-hdr-search=""
             onClick={openSearch}
             onPointerEnter={() => prefetchSearch(lang)}
             onFocus={() => prefetchSearch(lang)}
@@ -382,6 +385,31 @@ export function Header() {
             dir={ar ? "rtl" : undefined}
             style={{ display: "flex", flexDirection: "column", flex: "1 0 auto", ...(ar ? { fontFamily: KUFI } : {}) }}
           >
+            {/* Phones in portrait have no room for the search icon in the header, so search opens from here. */}
+            <button
+              type="button"
+              onClick={openSearch}
+              onPointerEnter={() => prefetchSearch(lang)}
+              aria-haspopup="dialog"
+              className="hover-accent-border"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                width: "100%",
+                margin: "12px 0 6px",
+                padding: "12px 14px",
+                border: "1px solid rgba(var(--ink-rgb),0.3)",
+                background: "var(--bg)",
+                color: "var(--muted)",
+                fontSize: "15px",
+                textAlign: ar ? "right" : "left",
+                cursor: "pointer",
+              }}
+            >
+              <SearchIcon size={20} />
+              <span>{t.searchSite}</span>
+            </button>
             {MAIN_NAV[lang].map(([key, label]) => (
               <Link
                 key={key}
