@@ -142,9 +142,11 @@ main section[id] { scroll-margin-top: 112px; }
  * line box (≈7px more space above than below at 15px), so lift it until the space matches.
  */
 [data-langrow] [data-glyph="arabic"] { position: relative; top: -0.24em; }
-/* Breathing room between the quote button and the menu stripes (portrait phones have no quote button). */
+/* Breathing room before the menu stripes (after the quote button, or the language square on portrait phones). */
 [data-burger] { margin-left: 12px; }
-@media (max-width: 640px) and (orientation: portrait) { [data-burger] { margin-left: 0; } }
+/* Portrait phones: the language square sits next to the stripes, so give it room there too. */
+@media (max-width: 640px) and (orientation: portrait) { [data-burger] { margin-left: 10px; } }
+@media (max-width: 340px) { [data-burger] { margin-left: 8px; } }
 
 @media (min-width: 901px) and (max-width: 1360px) {
   [data-hdrrow] { flex-wrap: nowrap !important; gap: 18px !important; }
