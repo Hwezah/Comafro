@@ -1,9 +1,9 @@
 import { contact, dialable } from "@/lib/contact";
 import type { Locale } from "@/lib/i18n";
 
-const LABEL: Record<Locale, string> = { en: "WHATSAPP", ar: "واتساب" };
+const LABEL: Record<Locale, string> = { en: "Enquire on WhatsApp", ar: "استفسروا عبر واتساب" };
 
-/** Green "WhatsApp +256 …" button used in the contact side panel and the mobile menu. */
+/** Green "Enquire on WhatsApp" button used in the contact side panel and the mobile menu. */
 export function WhatsAppButton({ lang, style }: { lang: Locale; style?: React.CSSProperties }) {
   return (
     <a
@@ -19,17 +19,13 @@ export function WhatsAppButton({ lang, style }: { lang: Locale; style?: React.CS
         padding: "18px 22px",
         background: "#1FA855",
         color: "#FFFFFF",
-        fontSize: "14px",
+        fontSize: "15px",
         fontWeight: 600,
-        letterSpacing: lang === "ar" ? 0 : "0.12em",
         ...style,
       }}
     >
       <WhatsAppIcon />
       <span>{LABEL[lang]}</span>
-      <span dir="ltr" style={{ letterSpacing: "0.06em" }}>
-        {contact.whatsapp}
-      </span>
     </a>
   );
 }
