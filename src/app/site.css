@@ -104,6 +104,19 @@ figure svg { max-width: 100%; }
 [data-search] input::-webkit-search-cancel-button,
 [data-search] input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }
 
+/*
+ * Footer "For buyers": one row of four columns split by thin bars. When the four links
+ * no longer fit side by side they drop straight to a single stack (no 2 × 2 in between).
+ */
+[data-footbuyers] { container-type: inline-size; container-name: footbuyers; }
+[data-footbuyers-row] { display: grid; grid-template-columns: 1fr; margin-top: 12px; border-top: 1px solid rgba(var(--bg-rgb), 0.18); }
+[data-footbuyers-row] > a { display: block; padding: 12px 0; border-bottom: 1px solid rgba(var(--bg-rgb), 0.12); }
+@container footbuyers (min-width: 760px) {
+  [data-footbuyers-row] { grid-template-columns: repeat(4, 1fr); border-top: 0; border-bottom: 0; }
+  [data-footbuyers-row] > a { padding: 14px 20px; border-bottom: 0; border-top: 1px solid rgba(var(--bg-rgb), 0.18); border-bottom: 1px solid rgba(var(--bg-rgb), 0.18); text-align: center; }
+  [data-footbuyers-row] > a + a { border-inline-start: 1px solid rgba(var(--bg-rgb), 0.22); }
+}
+
 /* Jumping to a section (search results) leaves room for the sticky header. */
 main section[id] { scroll-margin-top: 112px; }
 

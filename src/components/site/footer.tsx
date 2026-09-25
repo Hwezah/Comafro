@@ -74,6 +74,8 @@ export function Footer({ lang }: { lang: Locale }) {
   const other: Locale = ar ? "en" : "ar";
   const linkSize = ar ? "14.5px" : "15px";
   const label = { fontSize: "11.5px", color: "var(--sage)", ...(ar ? {} : { fontFamily: MONO }) };
+  // Section titles use the site amber; small print (legal line, notes) stays muted.
+  const heading = { ...label, color: "var(--ochre-light)" };
   const item = { fontSize: linkSize, color: "var(--sage-pale)" };
   const col = { display: "flex", flexDirection: "column", gap: "9px", marginTop: "12px" } as const;
 
@@ -146,7 +148,7 @@ export function Footer({ lang }: { lang: Locale }) {
             >
               {c.blurb}
             </p>
-            <p style={{ ...label, marginTop: "22px" }}>{c.group}</p>
+            <p style={{ ...heading, marginTop: "22px" }}>{c.group}</p>
             <div data-footcol="" style={{ ...col, gap: "4px" }}>
               <a
                 href={LAMI_MEAT_URL}
@@ -164,7 +166,7 @@ export function Footer({ lang }: { lang: Locale }) {
             </div>
           </div>
           <div data-footpair="">
-            <p style={label}>{c.pages}</p>
+            <p style={heading}>{c.pages}</p>
             <div data-footcol="" style={col}>
               {c.pageLinks.map(([key, text]) => (
                 <Link key={key} href={pageHref(lang, key as PageKey)} className="hover-white" style={item}>
@@ -172,17 +174,9 @@ export function Footer({ lang }: { lang: Locale }) {
                 </Link>
               ))}
             </div>
-            <p style={{ ...label, marginTop: "18px" }}>{c.buyers}</p>
-            <div data-footcol="" style={col}>
-              {c.buyerLinks.map(([key, text]) => (
-                <Link key={key} href={pageHref(lang, key as PageKey)} className="hover-white" style={item}>
-                  {text}
-                </Link>
-              ))}
-            </div>
           </div>
           <div>
-            <p style={label}>{c.contact}</p>
+            <p style={heading}>{c.contact}</p>
             <div data-footcol="" style={col}>
               <span style={{ ...item, direction: "ltr" }}>{contact.tradeEmail}</span>
               <span style={{ ...item, direction: "ltr" }}>{contact.phone}</span>
@@ -190,7 +184,7 @@ export function Footer({ lang }: { lang: Locale }) {
             </div>
           </div>
           <div>
-            <p style={label}>{c.markets}</p>
+            <p style={heading}>{c.markets}</p>
             <div data-footcol="" style={col}>
               {c.marketList.map((m) => (
                 <span key={m} style={item}>
@@ -227,6 +221,18 @@ export function Footer({ lang }: { lang: Locale }) {
             </Link>
           </div>
         </div>
+
+        {/* One row of four columns split by bars; a single stack once they would have to wrap (site.css). */}
+        <nav aria-label={c.buyers} data-footbuyers="" style={{ marginTop: "clamp(26px,3vw,40px)" }}>
+          <p style={heading}>{c.buyers}</p>
+          <div data-footbuyers-row="">
+            {c.buyerLinks.map(([key, text]) => (
+              <Link key={key} href={pageHref(lang, key as PageKey)} className="hover-white" style={item}>
+                {text}
+              </Link>
+            ))}
+          </div>
+        </nav>
         <div
           data-footbar=""
           style={{
