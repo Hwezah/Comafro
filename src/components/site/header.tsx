@@ -229,7 +229,9 @@ export function Header() {
               aria-label={t.otherName}
             >
               <span data-lbl-full="">{t.other}</span>
-              <span data-lbl-short="">{t.otherShort}</span>
+              <span data-lbl-short="" data-glyph={ar ? "latin" : "arabic"}>
+                {t.otherShort}
+              </span>
             </Link>
             <Link
               href={pageHref(lang, "contact")}

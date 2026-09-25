@@ -137,6 +137,11 @@ main section[id] { scroll-margin-top: 112px; }
  *   phones (portrait): logo · account · language · stripes (search and Quote are in the menu)
  */
 [data-cta-short] { display: none; }
+/*
+ * Optical centring for the one-glyph language square: the Arabic "ع" sits low in Noto Kufi's
+ * line box (≈7px more space above than below at 15px), so lift it until the space matches.
+ */
+[data-langrow] [data-glyph="arabic"] { position: relative; top: -0.24em; }
 /* Breathing room between the quote button and the menu stripes (portrait phones have no quote button). */
 [data-burger] { margin-left: 12px; }
 @media (max-width: 640px) and (orientation: portrait) { [data-burger] { margin-left: 0; } }
