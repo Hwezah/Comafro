@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
+import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { useApp } from "@/context/app-context";
 import { MOBILE_MENU_QUERY } from "@/lib/contact";
 import { pageHref, parsePath, type Locale, type PageKey } from "@/lib/i18n";
@@ -56,12 +58,23 @@ export function Header() {
   const ar = lang === "ar";
   const other: Locale = ar ? "en" : "ar";
   const t = T[lang];
+  useEffect(() => {
+    if (!menuOpen) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    return () => {
+      root.style.overflow = previous;
+    };
+  }, [menuOpen]);
+
   // Phones get the drop-down menu; tablets and desktops the contact side panel.
   const onBurger = () => (window.matchMedia(MOBILE_MENU_QUERY).matches ? toggleMenu() : openPanel());
   const underline = (key: PageKey) => `2px solid ${key === page ? "var(--accent)" : "transparent"}`;
 
   return (
     <header
+      data-menu-open={menuOpen ? "" : undefined}
       style={{
         position: "sticky",
         top: 0,
@@ -303,15 +316,14 @@ export function Header() {
             borderTop: "1px solid rgba(var(--ink-rgb),0.16)",
             background: "var(--bg2)",
             padding: `6px ${PAD_X} 18px`,
-            // The header is sticky, so a long menu scrolls inside the screen (phones in landscape).
-            maxHeight: "calc(100dvh - 64px)",
+            // Fills the rest of the screen (see [data-menu-open] in site.css); long menus scroll inside it.
             overflowY: "auto",
             overscrollBehavior: "contain",
           }}
         >
           <div
             dir={ar ? "rtl" : undefined}
-            style={{ display: "flex", flexDirection: "column", ...(ar ? { fontFamily: KUFI } : {}) }}
+            style={{ display: "flex", flexDirection: "column", flex: "1 0 auto", ...(ar ? { fontFamily: KUFI } : {}) }}
           >
             {MAIN_NAV[lang].map(([key, label]) => (
               <Link
@@ -358,21 +370,24 @@ export function Header() {
                 {label}
               </Link>
             ))}
-            <Link
-              href={pageHref(lang, "contact")}
-              className="hover-btn"
-              style={{
-                fontSize: ar ? "14.5px" : "15px",
-                fontWeight: 500,
-                background: "var(--ink)",
-                color: "var(--bg)",
-                padding: "14px 20px",
-                textAlign: "center",
-                marginTop: "16px",
-              }}
-            >
-              {t.quote}
-            </Link>
+            {/* Pinned to the bottom of the full-height menu. */}
+            <div style={{ display: "grid", gap: "10px", marginTop: "auto", paddingTop: "24px" }}>
+              <Link
+                href={pageHref(lang, "contact")}
+                className="hover-btn"
+                style={{
+                  fontSize: ar ? "14.5px" : "15px",
+                  fontWeight: 500,
+                  background: "var(--ink)",
+                  color: "var(--bg)",
+                  padding: "14px 20px",
+                  textAlign: "center",
+                }}
+              >
+                {t.quote}
+              </Link>
+              <WhatsAppButton lang={lang} style={{ padding: "15px 20px" }} />
+            </div>
           </div>
         </div>
       )}

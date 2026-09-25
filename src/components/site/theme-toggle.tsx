@@ -4,7 +4,7 @@ import { useApp } from "@/context/app-context";
 
 /** Fixed pill that switches between the cream and the dark grey palettes. */
 export function ThemeToggle() {
-  const { theme, toggleTheme } = useApp();
+  const { theme, toggleTheme, menuOpen } = useApp();
   const dark = theme === "dark";
 
   return (
@@ -15,6 +15,8 @@ export function ThemeToggle() {
       title={dark ? "Switch to cream theme" : "Switch to dark theme"}
       className="hover-ochre-border"
       style={{
+        // Hidden while the full-screen mobile menu is open so it doesn't cover the menu buttons.
+        visibility: menuOpen ? "hidden" : undefined,
         position: "fixed",
         bottom: "20px",
         right: "20px",

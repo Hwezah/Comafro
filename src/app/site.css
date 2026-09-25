@@ -111,6 +111,9 @@ figure svg { max-width: 100%; }
   [data-hdrrow] { flex-wrap: nowrap !important; }
   [data-logorow] { flex: 0 1 auto !important; min-width: 0; }
   [data-navctl] { gap: 10px !important; }
+  /* The open menu fills the screen below the header row. */
+  header[data-menu-open] { height: 100vh; height: 100dvh; display: flex; flex-direction: column; }
+  header[data-menu-open] [data-drawer] { flex: 1 1 auto; min-height: 0; }
 }
 @media (max-width: 380px) {
   [data-logo] { gap: 8px !important; }
