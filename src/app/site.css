@@ -137,6 +137,9 @@ main section[id] { scroll-margin-top: 112px; }
  *   phones (portrait): logo · account · language · stripes (search and Quote are in the menu)
  */
 [data-cta-short] { display: none; }
+/* Breathing room between the quote button and the menu stripes (portrait phones have no quote button). */
+[data-burger] { margin-left: 12px; }
+@media (max-width: 640px) and (orientation: portrait) { [data-burger] { margin-left: 0; } }
 
 @media (min-width: 901px) and (max-width: 1360px) {
   [data-hdrrow] { flex-wrap: nowrap !important; gap: 18px !important; }
